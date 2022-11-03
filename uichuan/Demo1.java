@@ -125,7 +125,7 @@ class MySonFrame extends Frame {
             process_1();
         } else if (type == 2) {
             process_2();
-        }else if (type == 3){
+        } else if (type == 3) {
             process_3();
         } else if (type == 4) {
             process_4();
@@ -188,6 +188,7 @@ class MySonFrame extends Frame {
         resbutton1.addActionListener(processLinstener2);
 
     }
+
     public void process_3() {
         // 新建一个容器
         Panel BtnContainer2 = new Panel();
@@ -206,6 +207,7 @@ class MySonFrame extends Frame {
         // ->按钮添加事件
 
     }
+
     public void process_4() {
         // 新建一个容器
         Panel BtnContainer2 = new Panel();
@@ -241,7 +243,7 @@ class MySonFrame extends Frame {
             int n1 = Integer.parseInt(num1.getText());
             int n2 = Integer.parseInt(num2.getText());
             int res = math_master.CaculateModel1(n1, n2);
-            num3.setText("" + (n1 + n2));
+            num3.setText("" + res);
             // 3.清楚前两个框
             num1.setText("");
             num2.setText("");
@@ -264,7 +266,7 @@ class MySonFrame extends Frame {
             int n1 = Integer.parseInt(num1.getText());
             int n2 = Integer.parseInt(num2.getText());
             int res = math_master.CaculateModel2(n1, n2);
-            num3.setText(""+res);
+            num3.setText("" + res);
             // 3.清楚前两个框
             num1.setText("");
             num2.setText("");
@@ -284,13 +286,19 @@ class MySonFrame extends Frame {
 }
 
 class Process {
-    public int CaculateModel1(int number1, int number2) {
-        while (number2 != 0) {
-            int temp = number1 % number2;
-            number1 = number2;
-            number2 = temp;
+    public int CaculateModel1(int a, int b) {
+        if (a < 0 || b < 0) {
+            return -1; // 数学上不考虑负数的约数
         }
-        return number1;
+        if (b == 0) {
+            return a;
+        }
+        while (a % b != 0) {
+            int temp = a % b;
+            a = b;
+            b = temp;
+        }
+        return b;
     }
 
     public int CaculateModel2(int m, int n) {
